@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lottie Player Update</title>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<body>
+    Animation 1 <input type="text" id="animation_1"><br>
+    Animation 2 <input type="text" id="animation_2"><br>
+    Animation 3 <input type="text" id="animation_3"><br>
+
+    <button id="submit">Test</button>
+    
+
+    <script>
+        document.getElementById('submit').addEventListener('click', function() {
+            const animation1Src = document.getElementById('animation_1').value;
+            const animation2Src = document.getElementById('animation_2').value;
+            const animation3Src = document.getElementById('animation_3').value;
+
+            // Delete old players
+            deleteLottiePlayer('player1');
+            deleteLottiePlayer('player1_2');
+            deleteLottiePlayer('player1_3');
+            deleteLottiePlayer('player2');
+            deleteLottiePlayer('player2_2');
+            deleteLottiePlayer('player2_3');
+            deleteLottiePlayer('player3');
+            deleteLottiePlayer('player3_2');
+            deleteLottiePlayer('player3_3');
+
+            // Create new players
+            createLottiePlayer('player1', animation1Src);
+            createLottiePlayer('player1_2', animation1Src);
+            createLottiePlayer('player1_3', animation1Src);
+            createLottiePlayer('player2', animation2Src);
+            createLottiePlayer('player2_2', animation2Src);
+            createLottiePlayer('player2', animation2Src);
+            createLottiePlayer('player3', animation3Src);
+            createLottiePlayer('player3_2', animation3Src);
+            createLottiePlayer('player3_3', animation3Src);
+        });
+
+        function createLottiePlayer(playerId, src) {
+            const player = document.createElement('lottie-player');
+            player.id = playerId;
+            player.setAttribute('src', src); // Set the src attribute
+            player.setAttribute('background', 'transparent');
+            player.setAttribute('speed', '1');
+            player.style.width = "450px";
+            player.setAttribute('direction', '1');
+            player.setAttribute('mode', 'normal');
+            player.setAttribute('loop', 'true');
+            player.setAttribute('autoplay', 'true');
+            player.setAttribute('controls', 'true');
+
+            document.body.appendChild(player);
+        }
+
+        function deleteLottiePlayer(playerId) {
+            const player = document.getElementById(playerId);
+            if (player) {
+                player.remove();
+            }
+        }
+    </script>
+</body>
+</html>
